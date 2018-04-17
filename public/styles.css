@@ -1,0 +1,29 @@
+#dealer-cards {
+    border: 1px solid black;
+    justify-content: center;
+    display: inline-flex;
+}
+#player-cards {
+    border: 1px solid black;
+    justify-content: center;
+    display: inline-flex;
+}
+
+#start-game-button {
+    background-color: green;
+}
+
+#stick-button {
+    border: 1px solid grey;
+}
+#hit-button {
+    border: 1px solid grey;
+}
+
+.showing-hide {
+    display: none;
+}
+
+p {
+    color: red;
+}

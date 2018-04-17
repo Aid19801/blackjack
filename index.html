@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blackjack</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        body { padding-top:50px; align-items: center; text-align: center; }
+    </style>
+
+</head>
+
+    <body>
+
+        <script src="app.js"></script>
+        <div class="container">
+            <div class="jumbotron">
+                <h1>Blackjack</h1>
+            </div>
+        </div>
+
+        <button id="start-game-button" class="btn btn-gn showing" onclick="startGame()">start game</button>
+
+        <div class="container">
+            <div class="row">
+                <h4>Dealer</h4>
+                <div id="dealer-cards"></div>
+                <p>Total: </p>
+                <p id="dealer-total"></p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <h4>You</h4>
+                <div id="player-cards"></div>
+                <p>Total: </p>
+                <p id="player-total"></p>
+            </div>
+        </div>
+        
+        <button id="hit-button" class="btn" onclick="hitMe()">HIT</button>
+        <button id="stick-button" class="btn" onclick="console.log('stick')">STICK</button>
+
+
+    </body>
+</html>

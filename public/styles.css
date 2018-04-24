@@ -1,29 +1,26 @@
-#dealer-cards {
-    border: 1px solid black;
-    justify-content: center;
-    display: inline-flex;
-}
-#player-cards {
-    border: 1px solid black;
-    justify-content: center;
-    display: inline-flex;
-}
-
-#start-game-button {
-    background-color: green;
-}
-
-#stick-button {
+.game-canvas {
     border: 1px solid grey;
+    background-color: beige;
 }
-#hit-button {
+
+.totals-ul {
+    list-style-type: none;
+    display: block;
+}
+
+#game-div {
+    height: 50vh;
+    width: 83vw;
+}
+
+.dealer-card  {
     border: 1px solid grey;
+    height: 90px;
+    width: 90px;
 }
 
-.showing-hide {
-    display: none;
-}
-
-p {
-    color: red;
+.player-card {
+    border: 1px solid grey;
+    height: 90px;
+    width: 90px;
 }

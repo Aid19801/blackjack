@@ -11,38 +11,12 @@
     </style>
 
 </head>
-
-    <body>
-
-        <script src="app.js"></script>
-        <div class="container">
-            <div class="jumbotron">
-                <h1>Blackjack</h1>
-            </div>
-        </div>
-
-        <button id="start-game-button" class="btn btn-gn showing" onclick="startGame()">start game</button>
-
-        <div class="container">
-            <div class="row">
-                <h4>Dealer</h4>
-                <div id="dealer-cards"></div>
-                <p>Total: </p>
-                <p id="dealer-total"></p>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <h4>You</h4>
-                <div id="player-cards"></div>
-                <p>Total: </p>
-                <p id="player-total"></p>
-            </div>
-        </div>
-        
-        <button id="hit-button" class="btn" onclick="hitMe()">HIT</button>
-        <button id="stick-button" class="btn" onclick="console.log('stick')">STICK</button>
-
-
+    <script src="app.js"></script>
+    <body onload="loadGame();">
+        <h1 id="result"></h1>
+        <ul class="totals-ul">
+            <li>player total: <h4 id="player-total">0</h4></li>
+            <li>dealer total: <h4 id="dealer-total">0</h4></li>
+        </ul>
     </body>
 </html>

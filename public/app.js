@@ -16,7 +16,7 @@ let playerRow, dealerRow;
 
 // GAME ACTIONS
 const loadGame = () => {
-    myGameArea.start();
+    myGameArea.setUp();
     generateDeck();
     startGame();
 }
@@ -24,15 +24,13 @@ const loadGame = () => {
 // game area
 var myGameArea = {
     canvas: document.createElement('div'),
-    start: function() {
+    setUp: function() {
         this.canvas.width = 680;
         this.canvas.height = 1570;
         this.canvas.className = 'game-canvas';
         this.canvas.id = 'game-div';
         document.body.insertBefore(this.canvas, document.body.childNodes[2]);
         createButtons(['Hit', 'Stick']);
-
-        console.log('child nodes: ', document.body.childNodes);
 
         let gameDiv = document.getElementById('game-div');
         let gameContainer = document.createElement('div');
@@ -64,7 +62,7 @@ const createButtons = arr => {
 }
 
 // create a deck of cards
-function generateDeck() {
+const generateDeck = () => {
     suits.map(eachSuit => {
         for (let i = 0; i < values.length; i++) {
             let newCard = {
@@ -78,7 +76,7 @@ function generateDeck() {
 }
 
 // pick one card & deduct it from the deck
-function pickACard(arr) {
+const pickACard = arr => {
     let pickedCard = deck[Math.floor(Math.random() * deck.length)];
     for (let i = 0; i < arr.length; i++) {
         if (arr[i] === pickedCard) {
@@ -91,8 +89,7 @@ function pickACard(arr) {
 }
 
 // map card names to values & update player totals
-function updateBothPlayerTotals(arr1, arr2) {
-
+const updateBothPlayerTotals = (arr1, arr2) => {
     arr1.map(each => {
         switch (each.value) {
             case 'A':
@@ -138,7 +135,7 @@ function updateBothPlayerTotals(arr1, arr2) {
 }
 
 // deals the first hand (2 cards to player, 1 to dealer)
-function dealFirstHand() {
+const dealFirstHand = () => {
     playerHand.push(pickACard(deck));
     dealerHand.push(pickACard(deck));
     playerHand.push(pickACard(deck));
@@ -146,7 +143,7 @@ function dealFirstHand() {
 }
 
 // populates a new div for every card that's been dealt
-function populateCards() {
+const populateCards = () => {
 
     playerHand.map((each, i) => {
         let newCardDiv = document.createElement('div');
@@ -176,7 +173,7 @@ function populateCards() {
 
 // if total is zero, deal 2 cards for player/1 for dealer & setup the cards on screen
 // if not, just 'hit' one new card to player.
-function startGame() {
+const startGame = () => {
     if (playerTotal === 0) {
         dealFirstHand();
         updateBothPlayerTotals(playerHand, dealerHand);
@@ -189,7 +186,7 @@ function startGame() {
 // kills existing card elements (to stop duplication of cards)
 // pushes a new card into player's hand, re-populates the divs.
 // checks if player has gone over 21.
-function hitMe() {
+const hitMe = () => {
     let playerRow = document.querySelector('.player-row');
     playerRow.innerHTML = null;
     let dealerRow = document.querySelector('.dealer-row');
@@ -203,8 +200,17 @@ function hitMe() {
     checkIfBust();
 }
 
+// when player wants to 'stick' at a number, remove hit/stick buttons
+// then hand over to dealer's go
+const stickMe = () => {
+    killElementId('hit-id');
+    killElementId('stick-id');
+    alert(`You are sticking on ${playerTotal}`);
+    hitDealer();
+}
+
 // once player has 'stuck', hitDealer does the same for dealer.
-function hitDealer() {
+const hitDealer = () => {
     alert(`Dealer Is Dealing...`);
 
     let playerRow = document.querySelector('.player-row');
@@ -242,21 +248,8 @@ function hitDealer() {
     return;
 }
 
-// helper function to kill off div elements.
-function killElementId(id) {
-    return document.getElementById(id).outerHTML = null;
-}
-
-// when player wants to 'stick' at a number, remove hit/stick buttons
-// then hand over to dealer's go
-function stickMe() {
-    killElementId('hit-id');
-    killElementId('stick-id');
-    alert(`You are sticking on ${playerTotal}`);
-    hitDealer();
-}
-
-function checkIfBust() {
+// checks if the player has gone over 21.
+const checkIfBust = () => {
     setTimeout(() => {
         if (playerTotal > 21) {
             hasLostAndRefresh('player', playerTotal);
@@ -266,7 +259,8 @@ function checkIfBust() {
     }, 500);
 }
 
-function checkIfDealerBust() {
+// checks if the dealer has gone over 21.
+const checkIfDealerBust = () => {
     setTimeout(() => {
         if (dealerTotal > 21) {
             alert('Dealer is BUST! You Win!');
@@ -281,17 +275,20 @@ function checkIfDealerBust() {
     }, 500);
 }
 
-function hasWon() {
+// action for player hitting 21 exactly
+const hasWon = () => {
     alert('Congrats! 21! You Have Won!');
     return location.reload();
 }
 
-function hasLostAndRefresh(playerOrDealer, playerOrDealerTotal) {
+// alert for whether player or dealer have gone over 21
+const hasLostAndRefresh = (playerOrDealer, playerOrDealerTotal) => {
     alert(`${playerOrDealer} is BUST with a score of ${playerOrDealerTotal}!`);
     return location.reload();
 }
 
-
-function* myGen() {
-    
+// helper function to kill off div elements.
+const killElementId = id => {
+    return document.getElementById(id).outerHTML = null;
 }
+

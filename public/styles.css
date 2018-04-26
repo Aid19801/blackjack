@@ -79,10 +79,12 @@ body {
     background-color: bisque;
     width: 80%;
     display: inline-block;
+    margin-bottom: 50px;
 }
 
 button {
     margin-right: 10px;
+    margin-bottom: 10px !important;
 }
 
 @keyframes fadein {

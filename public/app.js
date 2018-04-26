@@ -1,12 +1,17 @@
 
+// cards
 const suits = ['Hearts', 'Spades', 'Clubs', 'Diamonds'];
 const values = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'];
 let deck = [];
 let playerHand = [];
 let dealerHand = [];
+
+// scores
 let playerTotal = 0;
 let dealerTotal = 0;
 let max = 21;
+
+// setting out UI variables.
 let playerRow, dealerRow;
 
 // GAME ACTIONS
@@ -22,40 +27,39 @@ var myGameArea = {
     start: function() {
         this.canvas.width = 680;
         this.canvas.height = 1570;
-        this.canvas.className += 'game-canvas';
-        this.canvas.id += 'game-div';
-        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        this.canvas.className = 'game-canvas';
+        this.canvas.id = 'game-div';
+        document.body.insertBefore(this.canvas, document.body.childNodes[2]);
         createButtons(['Hit', 'Stick']);
 
+        console.log('child nodes: ', document.body.childNodes);
 
         let gameDiv = document.getElementById('game-div');
-
         let gameContainer = document.createElement('div');
-        gameContainer.className += 'container';
+        gameContainer.className = 'container';
 
         playerRow = document.createElement('div');
-        playerRow.className += "row player-row";
+        playerRow.className = "row player-row";
         gameContainer.appendChild(playerRow);
         gameDiv.appendChild(gameContainer);
 
         dealerRow = document.createElement('div');
-        dealerRow.className += "row dealer-row";
+        dealerRow.className = "row dealer-row";
         gameContainer.appendChild(dealerRow);
     },
-    end: function() {
-        console.log('end of game');
-    }
 }
 
 // setup buttons
 const createButtons = arr => {
-    arr.map(each => {
+    return arr.map(each => {
         let btn = document.createElement('button');
-        btn.className += `${each.toLowerCase()}-btn`;
+        btn.className = `${each.toLowerCase()}-btn btn btn-primary`;
         btn.setAttribute('id', `${each.toLowerCase()}-id`);
         btn.setAttribute('onclick', `${each.toLowerCase()}Me();`)
         btn.innerHTML = each;
-        return document.body.appendChild(btn);
+
+        let totalsSection = document.querySelector('.totals-section');
+        totalsSection.appendChild(btn);
     });
 }
 
@@ -85,6 +89,7 @@ function pickACard(arr) {
     }
     return pickedCard;
 }
+
 // map card names to values & update player totals
 function updateBothPlayerTotals(arr1, arr2) {
 
@@ -130,8 +135,6 @@ function updateBothPlayerTotals(arr1, arr2) {
     });
     document.getElementById('player-total').innerHTML = playerTotal;
     document.getElementById('dealer-total').innerHTML = dealerTotal;
-    console.log('playerTotal: ', playerTotal);
-    console.log('dealerTotal: ', dealerTotal);
 }
 
 // deals the first hand (2 cards to player, 1 to dealer)
@@ -141,6 +144,7 @@ function dealFirstHand() {
     playerHand.push(pickACard(deck));
     return;
 }
+
 // populates a new div for every card that's been dealt
 function populateCards() {
 
@@ -157,8 +161,17 @@ function populateCards() {
         newCardDiv.innerHTML = `The ${each.name}`;
         newCardDiv.className += 'col-xs-3 dealer-card';
         dealerRow.appendChild(newCardDiv);
-    })
+    });
 
+    let playerTitle = document.createElement('h3');
+    playerTitle.innerHTML = 'Player\'s Cards';
+    playerTitle.className = 'col-xs-3 playerTitle';
+    playerRow.appendChild(playerTitle);
+
+    let dealerTitle = document.createElement('h3');
+    dealerTitle.innerHTML = 'Dealer\'s Cards';
+    dealerTitle.className = 'col-xs-3 dealerTitle';
+    dealerRow.appendChild(dealerTitle);
 }
 
 // if total is zero, deal 2 cards for player/1 for dealer & setup the cards on screen
@@ -279,4 +292,6 @@ function hasLostAndRefresh(playerOrDealer, playerOrDealerTotal) {
 }
 
 
-
+function* myGen() {
+    
+}

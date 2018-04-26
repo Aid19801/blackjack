@@ -1,11 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis');
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+
+
+body {
+    background-image: url('cards.jpg');
+}
+.game-title {
+    font-family: 'Dosis', monospace;
+    margin-bottom: 30px;
+    font-size: 12vh;
+    color: white;
+}
+
 .game-canvas {
     border: 1px solid grey;
-    background-color: beige;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: inline-block;
 }
 
 .totals-ul {
     list-style-type: none;
     display: block;
+    font-family: 'Pacifico', monospace;
+    padding-left: 0;
 }
 
 #game-div {
@@ -15,12 +32,60 @@
 
 .dealer-card  {
     border: 1px solid grey;
-    height: 90px;
+    background-color: lightgrey;
+    height: 115px;
     width: 90px;
+    animation-name: fadein;
+    animation-duration: 1s;
 }
 
 .player-card {
     border: 1px solid grey;
-    height: 90px;
+    background-color: lightslategray;
+    height: 115px;
     width: 90px;
+    animation-name: fadein;
+    animation-duration: 1s;
+}
+
+.dealerTitle {
+    border: 1px solid grey;
+    background-color: antiquewhite;
+    height: 115px;
+    width: 200px;
+    animation-name: fadein;
+    animation-duration: 1s;
+    margin-top: 0;
+    padding-top: 25px;
+    border: 1px solid brown;
+    font-family: 'Pacifico', cursive;
+}
+
+.playerTitle {
+    border: 1px solid grey;
+    background-color: antiquewhite;
+    height: 115px;
+    width: 200px;
+    animation-name: fadein;
+    animation-duration: 1s;
+    margin-top: 0;
+    padding-top: 25px;
+    border: 1px solid brown;
+    font-family: 'Pacifico', cursive;
+}
+
+.totals-section {
+    border: 1px solid grey;
+    background-color: bisque;
+    width: 80%;
+    display: inline-block;
+}
+
+button {
+    margin-right: 10px;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
